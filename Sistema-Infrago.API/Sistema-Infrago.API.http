@@ -1,0 +1,6 @@
+@Sistema_Infrago.API_HostAddress = http://localhost:5283
+
+GET {{Sistema_Infrago.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
