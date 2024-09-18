@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_Infrago.Shared.Entities
 {
-    internal class OrderDetail
+    public class OrderDetail
     {
         public int Id { get; set; }
 

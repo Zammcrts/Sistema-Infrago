@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_Infrago.Shared.Entities
 {
-    internal class Project
+    public class Project
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "El campo {0} es obligatorio")] 

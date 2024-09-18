@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sistema_Infrago.Shared.Entities
 {
-    internal class Material
+    public class Material
     {
         public int Id { get; set; }
 

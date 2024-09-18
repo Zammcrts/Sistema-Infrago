@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace parcial_uno.Shared.Entities
 {
-    internal class Maintenance
+    public class Maintenance
     {
         public int Id { get; set; } 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]

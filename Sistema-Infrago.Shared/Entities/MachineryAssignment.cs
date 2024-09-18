@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace parcial_uno.Shared.Entities
 {
-    internal class MachineryAssignment
+    public class MachineryAssignment
     {
         public int MachineryAssignmentID { get; set; }
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
