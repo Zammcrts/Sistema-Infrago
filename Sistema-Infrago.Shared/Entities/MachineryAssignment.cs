@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sistema_Infrago.Shared.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,13 +12,16 @@ namespace parcial_uno.Shared.Entities
     {
         public int MachineryAssignmentID { get; set; }
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        [Display(Name = "Maquinaría")]
+        [Display(Name = "Proyecto")]
         [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
 
-        // agregar public project cuando este la entidad
+        public Project MachineProject { get; set; } = null!;
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
+        [Display(Name = "Máquina")]
+        [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
         public Machinery Machine { get; set; } = null!;
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        [Display(Name = "Frcha de asignación")]
+        [Display(Name = "Fecha de asignación")]
         [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
         public int AssignationDate { get; set; }
     }
