@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace parcial_uno.Shared.Entities
+namespace Sistema_Infrago.Shared.Entities
 {
     public class Tool
     {
