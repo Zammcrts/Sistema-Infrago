@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Sistema_Infrago.Shared.Entities;
 
 namespace Sistema_Infrago.API.Data
@@ -21,5 +22,31 @@ namespace Sistema_Infrago.API.Data
         public DbSet<Stockist> Stockists { get; set; }
         public DbSet<Tool> Tools { get; set; }
         public DbSet<ToolAssignment> ToolAssignments { get; set; }
+
+        public DataContext(DbContextOptions<DataContext> options): base(options)
+        {
+
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<MachineryAssignment>().HasIndex(x => x.MachineProject).IsUnique();
+            modelBuilder.Entity<Assignment>().HasIndex(x => x.Quantity).IsUnique();
+            modelBuilder.Entity<Client>().HasIndex(x => x.Project).IsUnique();
+            modelBuilder.Entity<Department>().HasIndex(x => x.Name).IsUnique();
+            modelBuilder.Entity<Machinery>().HasIndex(x => x.Code).IsUnique();
+            modelBuilder.Entity<MaintenanceDetails>().HasIndex(x => x.MaintenanceID).IsUnique();
+            modelBuilder.Entity<Maintenance>().HasIndex(x => x.MaintenanceID).IsUnique();
+            modelBuilder.Entity<Material>().HasIndex(x => x.Name).IsUnique();
+            modelBuilder.Entity<Order>().HasIndex(x => x.Stockist).IsUnique();
+            modelBuilder.Entity<OrderDetail>().HasIndex(x => x.Order).IsUnique();
+            modelBuilder.Entity<Project>().HasIndex(x => x.ProjectName).IsUnique();
+            modelBuilder.Entity<ProjectDetails>().HasIndex(x => x.DetailD).IsUnique();
+            modelBuilder.Entity<Service>().HasIndex(x => x.ServiceName).IsUnique();
+            modelBuilder.Entity<Stockist>().HasIndex(x => x.ProviderName).IsUnique();
+            modelBuilder.Entity<Tool>().HasIndex(x => x.ToolID).IsUnique();
+            modelBuilder.Entity<ToolAssignment>().HasIndex(x => x.ToolAssignmentID).IsUnique();
+        }
     }
 }
