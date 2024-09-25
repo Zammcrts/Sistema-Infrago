@@ -18,5 +18,7 @@ namespace Sistema_Infrago.Shared.Entities
         [Display(Name = "Cantidad disponible")]
         [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
         public int QuantityAvailable { get; set; }
+
+        public ICollection<ToolAssignment>? ToolAssignments { get; set; }
     }
 }

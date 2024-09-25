@@ -15,14 +15,14 @@ namespace Sistema_Infrago.Shared.Entities
         [Display(Name = "Proyecto")]
         [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
 
-        public Project MachineProject { get; set; } = null!;
+        public string MachineProject { get; set; } = null!;
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        [Display(Name = "Máquina")]
+        [Display(Name = "Máquina ")]
         [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
-        public Machinery Machine { get; set; } = null!;
+        public string Machine { get; set; } = null!;
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Fecha de asignación")]
-        [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
+        
         public int AssignationDate { get; set; }
     }
 }
