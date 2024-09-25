@@ -20,5 +20,7 @@ namespace Sistema_Infrago.Shared.Entities
         [Display(Name = "Orden")]
         [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
         public string Order { get; set; } = null!;
+
+        public ICollection<Order>? Orders { get; set; }
     }
 }

@@ -23,5 +23,8 @@ namespace Sistema_Infrago.Shared.Entities
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Precio por unidad")]
         public float PricePerUnit { get; set; }
+
+        public ICollection<OrderDetail>? OrderDetails { get; set; }
+        public ICollection<Assignment>? Assignments { get; set; }
     }
 }

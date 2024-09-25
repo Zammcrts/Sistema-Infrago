@@ -11,9 +11,9 @@ namespace Sistema_Infrago.Shared.Entities
     {
         public int Id { get; set; }
 
-        public Project Project { get; set; }
+        public Project? Project { get; set; }
 
-        public Material Material { get; set; } = null!;
+        public Material? Material { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")] 
         [Display(Name = "Cantidad de material")]

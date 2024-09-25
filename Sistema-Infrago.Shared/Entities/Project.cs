@@ -43,5 +43,9 @@ namespace Sistema_Infrago.Shared.Entities
         [Display(Name = "Estado del proyecto")]
         [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
         public string Status { get; set; } = null!;
+
+        public ICollection<ToolAssignment>? ToolAssignments { get; set; }
+        public ICollection<Assignment>? Assignments { get; set; }
+        public ICollection<Project>? Projects { get; set; }
     }
 }
