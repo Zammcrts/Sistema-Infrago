@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Sistema_Infrago.Shared.Entities;
 
 namespace Sistema_Infrago.API.Data
@@ -23,7 +22,7 @@ namespace Sistema_Infrago.API.Data
         public DbSet<Tool> Tools { get; set; }
         public DbSet<ToolAssignment> ToolAssignments { get; set; }
 
-        public DataContext(DbContextOptions<DataContext> options): base(options)
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
 
         }
