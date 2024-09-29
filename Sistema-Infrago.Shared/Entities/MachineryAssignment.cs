@@ -24,5 +24,6 @@ namespace Sistema_Infrago.Shared.Entities
         [Display(Name = "Fecha de asignación")]
         
         public int AssignationDate { get; set; }
+        public Machinery? Machinery { get; set; }
     }
 }

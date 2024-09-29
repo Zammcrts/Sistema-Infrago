@@ -47,5 +47,7 @@ namespace Sistema_Infrago.Shared.Entities
         public ICollection<ToolAssignment>? ToolAssignments { get; set; }
         public ICollection<Assignment>? Assignments { get; set; }
         public ICollection<Project>? Projects { get; set; }
+        public ICollection<MachineryAssignment>? MachineryAssignments { get; set; } // relacion con la asignacion de maquinaria
+        public ICollection<ProjectDetails>? ProjectDetails { get; set; } // relacion con servicios
     }
 }

@@ -19,6 +19,6 @@ namespace Sistema_Infrago.Shared.Entities
         [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
         public float Cost { get; set; }
 
-        // revisar si afecta que el costo y el nombre (relacion?) se aplique a ambas clases 
+        public ICollection<ProjectDetails>? Details { get; set; }
     }
 }

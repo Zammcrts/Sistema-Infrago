@@ -30,5 +30,7 @@ namespace Sistema_Infrago.Shared.Entities
         [Display(Name = "Costo")]
         [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
         public float Cost { get; set; }
+        public Maintenance? Maintenance { get; set; } // relacion con mantenimiento
+        public Machinery? Machinery { get; set; } // relacion con maquinaria
     }
 }
