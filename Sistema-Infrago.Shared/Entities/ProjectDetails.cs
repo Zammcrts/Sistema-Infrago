@@ -21,12 +21,10 @@ namespace Sistema_Infrago.Shared.Entities
         public string ServiceType { get; set; } = null!;
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Costo")]
-        [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
         public float Cost { get; set; }
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Proyecto")]
-        [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
-        public Service? Service { get; set; }
         public Project? Project { get; set; }
+        public Service? Service { get; set; }
     }
 }

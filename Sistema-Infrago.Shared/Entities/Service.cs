@@ -16,7 +16,6 @@ namespace Sistema_Infrago.Shared.Entities
         public string ServiceName { get; set; } = null!;
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Costo del servicio")]
-        [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
         public float Cost { get; set; }
 
         public ICollection<ProjectDetails>? Details { get; set; }
