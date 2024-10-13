@@ -9,6 +9,9 @@ namespace Sistema_Infrago.Shared.Entities
 {
     public class Service
     {
+        public int Id { get; set; }
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
+        [Display(Name = "ID del servicio")]
         public int ServiceID { get; set; }
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Nombre del Servicio")]
@@ -17,7 +20,6 @@ namespace Sistema_Infrago.Shared.Entities
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Costo del servicio")]
         public float Cost { get; set; }
-
-        public ICollection<ProjectDetails>? Details { get; set; }
+        // public ICollection<ProjectDetails>? Details { get; set; }
     }
 }

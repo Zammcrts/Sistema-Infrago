@@ -17,7 +17,7 @@ namespace Sistema_Infrago.Shared.Entities
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Cantidad disponible")]
         public int QuantityAvailable { get; set; }
+        // public ICollection<ToolAssignment>? ToolAssignments { get; set; }
 
-        public ICollection<ToolAssignment>? ToolAssignments { get; set; }
     }
 }

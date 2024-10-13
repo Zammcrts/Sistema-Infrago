@@ -24,7 +24,7 @@ namespace Sistema_Infrago.Shared.Entities
         [Display(Name = "Precio por unidad")]
         public float PricePerUnit { get; set; }
 
-        public ICollection<OrderDetail>? OrderDetails { get; set; }
-        public ICollection<Assignment>? Assignments { get; set; }
+        /*public ICollection<OrderDetail>? OrderDetails { get; set; }
+        public ICollection<Assignment>? Assignments { get; set; }*/
     }
 }

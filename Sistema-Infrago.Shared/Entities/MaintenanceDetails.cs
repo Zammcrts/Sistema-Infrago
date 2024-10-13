@@ -9,13 +9,16 @@ namespace Sistema_Infrago.Shared.Entities
 {
     public class MaintenanceDetails
     {
-        public int MaintenanceID { get; set; }
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Máquina")]
-        public Machinery Machine { get; set; } = null!;
+        [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
+        public string Machine { get; set; } = null!;
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Fecha de mantenimiento")]
-        public int MaintenanceDate { get; set; }
+        [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
+        public string MaintenanceDate { get; set; } = null!;
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Tipo de mantenimiento")]
         [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
@@ -27,7 +30,9 @@ namespace Sistema_Infrago.Shared.Entities
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Costo")]
         public float Cost { get; set; }
-        public Maintenance? Maintenance { get; set; } // relacion con mantenimiento
-        public Machinery? Machinery { get; set; } // relacion con maquinaria
+
+        /*public Maintenance? Maintenance { get; set; } // relacion con mantenimiento
+        public Machinery? Machinery { get; set; } // relacion con maquinaria*/
+       
     }
 }
