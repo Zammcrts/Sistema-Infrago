@@ -15,19 +15,49 @@ namespace Sistema_Infrago.API.Controllers
         {
             this.dataContext = dataContext;
         }
-
         [HttpGet]
         public async Task<IActionResult> GetAsync()
         {
             return Ok(await dataContext.Stockists.ToListAsync());
         }
 
-        [HttpPost]
-        public async Task<IActionResult> PostAsync(Stockist stockist) //http results
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetAsync(int id)
         {
-            dataContext.Stockists.Add(stockist); //se agrega
-            await dataContext.SaveChangesAsync(); //salva los changos
+            var stockist = await dataContext.Stockists.FirstOrDefaultAsync(x => x.Id == id);
+            if (stockist == null)
+            {
+                return NotFound();
+            }
             return Ok(stockist);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PostAsync(Stockist stockist)
+        {
+            dataContext.Stockists.Add(stockist);
+            await dataContext.SaveChangesAsync();
+            return Ok(stockist);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> Put(Stockist stockist)
+        {
+            dataContext.Stockists.Update(stockist);
+            await dataContext.SaveChangesAsync();
+            return Ok(stockist);
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var affectedRows = await dataContext.Stockists.Where(x => x.Id == id)
+                .ExecuteDeleteAsync();
+            if (affectedRows == 0)
+            {
+                return NotFound();
+            }
+            return NoContent();
         }
     }
 }

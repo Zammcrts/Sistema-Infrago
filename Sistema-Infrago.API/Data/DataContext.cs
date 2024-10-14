@@ -36,7 +36,6 @@ namespace Sistema_Infrago.API.Data
             modelBuilder.Entity<Machinery>().HasIndex(x => x.Code).IsUnique();
             modelBuilder.Entity<Maintenance>().HasIndex(x => x.MaintenanceID).IsUnique();
             modelBuilder.Entity<Material>().HasIndex(x => x.Name).IsUnique();
-            modelBuilder.Entity<Project>().HasIndex(x => x.ProjectName).IsUnique();
             modelBuilder.Entity<Service>().HasIndex(x => x.ServiceName).IsUnique();
             modelBuilder.Entity<Stockist>().HasIndex(x => x.ProviderName).IsUnique();
             modelBuilder.Entity<Tool>().HasIndex(x => x.ToolID).IsUnique();

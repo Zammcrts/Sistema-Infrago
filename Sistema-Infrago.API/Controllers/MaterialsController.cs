@@ -15,19 +15,49 @@ namespace Sistema_Infrago.API.Controllers
         {
             this.dataContext = dataContext;
         }
-
         [HttpGet]
         public async Task<IActionResult> GetAsync()
         {
             return Ok(await dataContext.Materials.ToListAsync());
         }
 
-        [HttpPost]
-        public async Task<IActionResult> PostAsync(Material material) //http results
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetAsync(int id)
         {
-            dataContext.Materials.Add(material); //se agrega
-            await dataContext.SaveChangesAsync(); //salva los changos
+            var material = await dataContext.Materials.FirstOrDefaultAsync(x => x.Id == id);
+            if (material == null)
+            {
+                return NotFound();
+            }
             return Ok(material);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PostAsync(Material material)
+        {
+            dataContext.Materials.Add(material);
+            await dataContext.SaveChangesAsync();
+            return Ok(material);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> Put(Material material)
+        {
+            dataContext.Materials.Update(material);
+            await dataContext.SaveChangesAsync();
+            return Ok(material);
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var affectedRows = await dataContext.Materials.Where(x => x.Id == id)
+                .ExecuteDeleteAsync();
+            if (affectedRows == 0)
+            {
+                return NotFound();
+            }
+            return NoContent();
         }
     }
 }

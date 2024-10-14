@@ -49,6 +49,6 @@ namespace Sistema_Infrago.Shared.Entities
         [Display(Name = "Proyecto")]
         [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
         public string Project { get; set; } = null!;
-        //public ICollection<Project>? Projects { get; set; }
+        public ICollection<Project>? Projects { get; set; }
     }
 }

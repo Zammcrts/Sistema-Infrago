@@ -15,19 +15,49 @@ namespace Sistema_Infrago.API.Controllers
         {
             this.dataContext = dataContext;
         }
-
         [HttpGet]
         public async Task<IActionResult> GetAsync()
         {
             return Ok(await dataContext.Assignments.ToListAsync());
         }
 
-        [HttpPost]
-        public async Task<IActionResult> PostAsync(Assignment assignment) //http results
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetAsync(int id)
         {
-            dataContext.Assignments.Add(assignment); //se agrega
-            await dataContext.SaveChangesAsync(); //salva los changos
+            var assignment = await dataContext.Assignments.FirstOrDefaultAsync(x => x.Id == id);
+            if (assignment == null)
+            {
+                return NotFound();
+            }
             return Ok(assignment);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PostAsync(Assignment assignment)
+        {
+            dataContext.Assignments.Add(assignment);
+            await dataContext.SaveChangesAsync();
+            return Ok(assignment);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> Put(Assignment assignment)
+        {
+            dataContext.Assignments.Update(assignment);
+            await dataContext.SaveChangesAsync();
+            return Ok(assignment);
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var affectedRows = await dataContext.Assignments.Where(x => x.Id == id)
+                .ExecuteDeleteAsync();
+            if (affectedRows == 0)
+            {
+                return NotFound();
+            }
+            return NoContent();
         }
 
     }
