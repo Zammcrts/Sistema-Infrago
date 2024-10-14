@@ -21,6 +21,11 @@ namespace Sistema_Infrago.API.Controllers
         {
             return Ok(await dataContext.MaintenanceDetails.ToListAsync());
         }
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetAsync(int id)
+        {
+            return Ok(await dataContext.MaintenanceDetails.FirstOrDefaultAsync(x => x.MaintenanceID == id));
+        }
         [HttpPost]
 
         public async Task<IActionResult> PostAsync(MaintenanceDetails maintenanceDetails)
@@ -29,6 +34,24 @@ namespace Sistema_Infrago.API.Controllers
             await dataContext.SaveChangesAsync();
             return Ok(maintenanceDetails); // agrega los datos al servidor epicooo
 
+        }
+        [HttpPut]
+        public async Task<ActionResult> Put(MaintenanceDetails maintenanceDetails)
+        {
+            dataContext.MaintenanceDetails.Update(maintenanceDetails);
+            await dataContext.SaveChangesAsync();
+            return Ok(maintenanceDetails);
+        }
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var afectedRows = await
+                dataContext.MaintenanceDetails.Where(X => X.MaintenanceID == id).ExecuteDeleteAsync();
+            if (afectedRows == 0)
+            {
+                return NotFound();
+            }
+            return NoContent();
         }
     }
 }

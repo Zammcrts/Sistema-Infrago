@@ -6,8 +6,8 @@ using Sistema_Infrago.Shared.Entities;
 namespace Sistema_Infrago.API.Controllers
 {
     [ApiController]
-    [Route("/api/teachers")]
-    public class ToolsController: ControllerBase
+    [Route("/api/tools")]
+    public class ToolsController : ControllerBase
     {
         private readonly DataContext dataContext;
 
@@ -21,6 +21,11 @@ namespace Sistema_Infrago.API.Controllers
         {
             return Ok(await dataContext.Tools.ToListAsync());
         }
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetAsync(int id)
+        {
+            return Ok(await dataContext.Tools.FirstOrDefaultAsync(x => x.ToolID == id));
+        }
         [HttpPost]
 
         public async Task<IActionResult> PostAsync(Tool tool)
@@ -29,6 +34,24 @@ namespace Sistema_Infrago.API.Controllers
             await dataContext.SaveChangesAsync();
             return Ok(tool); // agrega los datos al servidor epicooo
 
+        }
+        [HttpPut]
+        public async Task<ActionResult> Put(Tool tool)
+        {
+            dataContext.Tools.Update(tool);
+            await dataContext.SaveChangesAsync();
+            return Ok(tool);
+        }
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var afectedRows = await
+                dataContext.Tools.Where(X => X.ToolID == id).ExecuteDeleteAsync();
+            if (afectedRows == 0)
+            {
+                return NotFound();
+            }
+            return NoContent();
         }
     }
 }
