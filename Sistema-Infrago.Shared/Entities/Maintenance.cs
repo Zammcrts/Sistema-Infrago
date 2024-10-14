@@ -31,7 +31,7 @@ namespace Sistema_Infrago.Shared.Entities
         [Display(Name = "Costo")]
         public float Cost { get; set; }
 
-        //public ICollection<MaintenanceDetails>? Details { get; set; } // relacion con los detalles
+        public ICollection<MaintenanceDetails>? Details { get; set; } // relacion con los detalles
 
     }
 }

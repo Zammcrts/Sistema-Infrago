@@ -30,9 +30,8 @@ namespace Sistema_Infrago.Shared.Entities
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Costo")]
         public float Cost { get; set; }
-
-        /*public Maintenance? Maintenance { get; set; } // relacion con mantenimiento
-        public Machinery? Machinery { get; set; } // relacion con maquinaria*/
+        public Maintenance? Maintenance { get; set; } // relacion con mantenimiento
+        public Machinery? Machinery { get; set; } // relacion con maquinaria
        
     }
 }
