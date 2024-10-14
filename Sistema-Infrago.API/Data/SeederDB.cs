@@ -66,22 +66,22 @@ namespace Sistema_Infrago.API.Data
 
                 if (project1 != null && material1 != null)
                 {
-                    dataContext.Assignments.Add(new Assignment { Proyect = "Hospital Manuel Cervantes", Quantity = 30, Project = project1, Material = material1 });
+                    dataContext.Assignments.Add(new Assignment { ProjectName = "Hospital Manuel Cervantes", Quantity = 30, Project = project1, Material = material1 });
                 }
 
                 if (project2 != null && material2 != null)
                 {
-                    dataContext.Assignments.Add(new Assignment { Proyect = "Escuela Primaria La Reforma", Quantity = 50, Project = project2, Material = material2 });
+                    dataContext.Assignments.Add(new Assignment { ProjectName = "Escuela Primaria La Reforma", Quantity = 50, Project = project2, Material = material2 });
                 }
 
                 if (project3 != null && material3 != null)
                 {
-                    dataContext.Assignments.Add(new Assignment { Proyect = "Conjunto Habitacional Las Palmas", Quantity = 100, Project = project3, Material = material3 });
+                    dataContext.Assignments.Add(new Assignment { ProjectName = "Conjunto Habitacional Las Palmas", Quantity = 100, Project = project3, Material = material3 });
                 }
 
                 if (project4 != null && material4 != null)
                 {
-                    dataContext.Assignments.Add(new Assignment { Proyect = "Casa Residencial Monterreal", Quantity = 75, Project = project4, Material = material4 });
+                    dataContext.Assignments.Add(new Assignment { ProjectName = "Casa Residencial Monterreal", Quantity = 75, Project = project4, Material = material4 });
                 }
 
                 await dataContext.SaveChangesAsync();

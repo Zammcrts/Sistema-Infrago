@@ -8,7 +8,7 @@ namespace Sistema_Infrago.Shared.Entities
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Proyecto")]
         [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
-        public string Proyect { get; set; } = null!;
+        public string ProjectName { get; set; } = null!;
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Cantidad de material")]
