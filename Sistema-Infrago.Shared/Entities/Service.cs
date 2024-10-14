@@ -20,6 +20,6 @@ namespace Sistema_Infrago.Shared.Entities
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Costo del servicio")]
         public float Cost { get; set; }
-        // public ICollection<ProjectDetails>? Details { get; set; }
+        public ICollection<ProjectDetails>? Details { get; set; }
     }
 }

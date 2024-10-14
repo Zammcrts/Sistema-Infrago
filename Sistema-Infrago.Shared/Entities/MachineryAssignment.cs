@@ -19,12 +19,8 @@ namespace Sistema_Infrago.Shared.Entities
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Máquina ")]
         [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
-        public string Machine { get; set; } = null!;
-        [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        [Display(Name = "Fecha de asignación")]
-        [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
         public string AssignationDate { get; set; } = null!;
 
-        //public Machinery? Machinery { get; set; }
+        public Machinery? Machinery { get; set; }
     }
 }
