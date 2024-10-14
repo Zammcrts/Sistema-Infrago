@@ -4,7 +4,7 @@ namespace Sistema_Infrago.Shared.Entities
 {
     public class ToolAssignment
     {
-        int Id { get; set; }
+        public int Id { get; set; }
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "ID de la herramienta ")]
         public int ToolAssignmentID { get; set; }

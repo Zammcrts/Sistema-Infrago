@@ -36,7 +36,7 @@ namespace Sistema_Infrago.API.Migrations
                     b.Property<int?>("ProjectId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Proyect")
+                    b.Property<string>("ProjectName")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -168,11 +168,6 @@ namespace Sistema_Infrago.API.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("MaintenanceDetails")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("Code")
@@ -194,15 +189,13 @@ namespace Sistema_Infrago.API.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Machine")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<string>("MachineProject")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<int?>("MachineryId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("ProjectId")
                         .HasColumnType("int");
@@ -211,6 +204,8 @@ namespace Sistema_Infrago.API.Migrations
 
                     b.HasIndex("MachineProject")
                         .IsUnique();
+
+                    b.HasIndex("MachineryId");
 
                     b.HasIndex("ProjectId");
 
@@ -276,10 +271,16 @@ namespace Sistema_Infrago.API.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int?>("MachineryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("MaintenanceDate")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<int?>("MaintenanceId")
+                        .HasColumnType("int");
 
                     b.Property<string>("MaintenanceType")
                         .IsRequired()
@@ -287,6 +288,10 @@ namespace Sistema_Infrago.API.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MachineryId");
+
+                    b.HasIndex("MaintenanceId");
 
                     b.ToTable("MaintenanceDetails");
                 });
@@ -455,12 +460,10 @@ namespace Sistema_Infrago.API.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Project")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
 
-                    b.Property<int?>("ProjectId")
+                    b.Property<int?>("ServiceId")
                         .HasColumnType("int");
 
                     b.Property<string>("ServiceType")
@@ -471,6 +474,8 @@ namespace Sistema_Infrago.API.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ProjectId");
+
+                    b.HasIndex("ServiceId");
 
                     b.ToTable("ProjectDetails");
                 });
@@ -565,13 +570,16 @@ namespace Sistema_Infrago.API.Migrations
 
             modelBuilder.Entity("Sistema_Infrago.Shared.Entities.Tool", b =>
                 {
-                    b.Property<int>("ToolID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ToolID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("QuantityAvailable")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ToolID")
                         .HasColumnType("int");
 
                     b.Property<string>("ToolName")
@@ -579,7 +587,7 @@ namespace Sistema_Infrago.API.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("ToolID");
+                    b.HasKey("Id");
 
                     b.HasIndex("ToolID")
                         .IsUnique();
@@ -589,34 +597,32 @@ namespace Sistema_Infrago.API.Migrations
 
             modelBuilder.Entity("Sistema_Infrago.Shared.Entities.ToolAssignment", b =>
                 {
-                    b.Property<int>("ToolAssignmentID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ToolAssignmentID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AssignmentDate")
                         .HasColumnType("int");
 
-                    b.Property<string>("Project")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<int?>("ProjectId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Tool")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<int>("ToolAssignmentID")
+                        .HasColumnType("int");
 
-                    b.HasKey("ToolAssignmentID");
+                    b.Property<int>("ToolId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("ProjectId");
 
                     b.HasIndex("ToolAssignmentID")
                         .IsUnique();
+
+                    b.HasIndex("ToolId");
 
                     b.ToTable("ToolAssignments");
                 });
@@ -638,9 +644,30 @@ namespace Sistema_Infrago.API.Migrations
 
             modelBuilder.Entity("Sistema_Infrago.Shared.Entities.MachineryAssignment", b =>
                 {
+                    b.HasOne("Sistema_Infrago.Shared.Entities.Machinery", "Machinery")
+                        .WithMany("MachineryAssignments")
+                        .HasForeignKey("MachineryId");
+
                     b.HasOne("Sistema_Infrago.Shared.Entities.Project", null)
                         .WithMany("MachineryAssignments")
                         .HasForeignKey("ProjectId");
+
+                    b.Navigation("Machinery");
+                });
+
+            modelBuilder.Entity("Sistema_Infrago.Shared.Entities.MaintenanceDetails", b =>
+                {
+                    b.HasOne("Sistema_Infrago.Shared.Entities.Machinery", "Machinery")
+                        .WithMany("MaintenanceDetails")
+                        .HasForeignKey("MachineryId");
+
+                    b.HasOne("Sistema_Infrago.Shared.Entities.Maintenance", "Maintenance")
+                        .WithMany("Details")
+                        .HasForeignKey("MaintenanceId");
+
+                    b.Navigation("Machinery");
+
+                    b.Navigation("Maintenance");
                 });
 
             modelBuilder.Entity("Sistema_Infrago.Shared.Entities.Order", b =>
@@ -686,16 +713,36 @@ namespace Sistema_Infrago.API.Migrations
 
             modelBuilder.Entity("Sistema_Infrago.Shared.Entities.ProjectDetails", b =>
                 {
-                    b.HasOne("Sistema_Infrago.Shared.Entities.Project", null)
+                    b.HasOne("Sistema_Infrago.Shared.Entities.Project", "Project")
                         .WithMany("ProjectDetails")
-                        .HasForeignKey("ProjectId");
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Sistema_Infrago.Shared.Entities.Service", "Service")
+                        .WithMany("Details")
+                        .HasForeignKey("ServiceId");
+
+                    b.Navigation("Project");
+
+                    b.Navigation("Service");
                 });
 
             modelBuilder.Entity("Sistema_Infrago.Shared.Entities.ToolAssignment", b =>
                 {
-                    b.HasOne("Sistema_Infrago.Shared.Entities.Project", null)
+                    b.HasOne("Sistema_Infrago.Shared.Entities.Project", "Project")
                         .WithMany("ToolAssignments")
                         .HasForeignKey("ProjectId");
+
+                    b.HasOne("Sistema_Infrago.Shared.Entities.Tool", "Tool")
+                        .WithMany("ToolAssignments")
+                        .HasForeignKey("ToolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Project");
+
+                    b.Navigation("Tool");
                 });
 
             modelBuilder.Entity("Sistema_Infrago.Shared.Entities.Client", b =>
@@ -706,6 +753,18 @@ namespace Sistema_Infrago.API.Migrations
             modelBuilder.Entity("Sistema_Infrago.Shared.Entities.Department", b =>
                 {
                     b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("Sistema_Infrago.Shared.Entities.Machinery", b =>
+                {
+                    b.Navigation("MachineryAssignments");
+
+                    b.Navigation("MaintenanceDetails");
+                });
+
+            modelBuilder.Entity("Sistema_Infrago.Shared.Entities.Maintenance", b =>
+                {
+                    b.Navigation("Details");
                 });
 
             modelBuilder.Entity("Sistema_Infrago.Shared.Entities.Material", b =>
@@ -733,9 +792,19 @@ namespace Sistema_Infrago.API.Migrations
                     b.Navigation("ToolAssignments");
                 });
 
+            modelBuilder.Entity("Sistema_Infrago.Shared.Entities.Service", b =>
+                {
+                    b.Navigation("Details");
+                });
+
             modelBuilder.Entity("Sistema_Infrago.Shared.Entities.Stockist", b =>
                 {
                     b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("Sistema_Infrago.Shared.Entities.Tool", b =>
+                {
+                    b.Navigation("ToolAssignments");
                 });
 #pragma warning restore 612, 618
         }

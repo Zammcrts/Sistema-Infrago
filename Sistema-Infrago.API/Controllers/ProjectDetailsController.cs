@@ -24,7 +24,7 @@ namespace Sistema_Infrago.API.Controllers
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetAsync(int id)
         {
-            return Ok(await dataContext.ProjectDetails.FirstOrDefaultAsync(x => x.DetailD == id));
+            return Ok(await dataContext.ProjectDetails.FirstOrDefaultAsync(x => x.Id == id));
         }
         [HttpPost]
 
@@ -46,7 +46,7 @@ namespace Sistema_Infrago.API.Controllers
         public async Task<ActionResult> Delete(int id)
         {
             var afectedRows = await
-                dataContext.ProjectDetails.Where(X => X.DetailD == id).ExecuteDeleteAsync();
+                dataContext.ProjectDetails.Where(X => X.Id == id).ExecuteDeleteAsync();
             if (afectedRows == 0)
             {
                 return NotFound();

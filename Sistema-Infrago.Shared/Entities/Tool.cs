@@ -9,6 +9,9 @@ namespace Sistema_Infrago.Shared.Entities
 {
     public class Tool
     {
+        public int Id { get; set; }
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
+        [Display(Name = "Nombre de la Herramienta")]
         public int ToolID { get; set; }
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Nombre de la Herramienta")]
