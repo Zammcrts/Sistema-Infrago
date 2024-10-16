@@ -21,7 +21,243 @@ namespace Sistema_Infrago.API.Data
             await CheckAssignmentsAsync();
             await CheckClientsAsync();
             await CheckProjectsAsync();
+            // parte dos
+            await CheckMaintenancesAsync();
+            await CheckMaintenanceDetailsAsync();
+            await CheckMachineriesAsync();
+            await CheckMachineryAssignmentsAsync();
+            await CheckToolsAsync();
+            await CheckToolAssignmentsAsync();
+            await CheckServicesAsync();
+            await CheckProjectDetailsAsync();
 
+        }
+
+        private async Task CheckProjectDetailsAsync()
+        {
+            if (!dataContext.ProjectDetails.Any())
+            {
+                var project1 = dataContext.Projects.FirstOrDefault(x => x.Client == "Hospital Manuel Cervantes");
+                var project2 = dataContext.Projects.FirstOrDefault(x => x.Client == "Escuela Primaria La Reforma");
+                var service1 = dataContext.Services.FirstOrDefault(x => x.ServiceName == "Instalación de Electricidad");
+                var service2 = dataContext.Services.FirstOrDefault(x => x.ServiceName == "Reparación de Plomería");
+
+                if (project1 != null && service1 != null)
+                {
+                    dataContext.ProjectDetails.Add(new ProjectDetails
+                    {
+                        DetailDescription = "Instalación completa de sistemas eléctricos",
+                        ServiceType = "Instalación",
+                        Cost = 5000.75f,
+                        Project = project1,
+                        Service = service1
+                    });
+                }
+
+                if (project2 != null && service2 != null)
+                {
+                    dataContext.ProjectDetails.Add(new ProjectDetails
+                    {
+                        DetailDescription = "Reemplazo de tuberías en todo el edificio",
+                        ServiceType = "Reparación",
+                        Cost = 1200.50f,
+                        Project = project2,
+                        Service = service2
+                    });
+                }
+
+                await dataContext.SaveChangesAsync();
+            }
+        }
+
+        private async Task CheckServicesAsync()
+        {
+            if (!dataContext.Services.Any())
+            {
+                dataContext.Services.Add(new Service
+                {
+                    ServiceName = "Instalación de Electricidad",
+                    Cost = 1500.50f
+                });
+                dataContext.Services.Add(new Service
+                {
+                    ServiceName = "Reparación de Plomería",
+                    Cost = 800.00f
+                });
+                dataContext.Services.Add(new Service
+                {
+                    ServiceName = "Mantenimiento de Clima",
+                    Cost = 1200.75f
+                });
+                dataContext.Services.Add(new Service
+                {
+                    ServiceName = "Servicios de Pintura",
+                    Cost = 950.30f
+                });
+
+                await dataContext.SaveChangesAsync();
+            }
+        }
+
+        private async Task CheckToolAssignmentsAsync()
+        {
+            if (!dataContext.ToolAssignments.Any())
+            {
+                var tool1 = dataContext.Tools.FirstOrDefault(x => x.ToolName == "Taladro Eléctrico");
+                var tool2 = dataContext.Tools.FirstOrDefault(x => x.ToolName == "Sierra Circular");
+                var tool3 = dataContext.Tools.FirstOrDefault(x => x.ToolName == "Martillo");
+
+                var project1 = dataContext.Projects.FirstOrDefault(x => x.Client == "Hospital Manuel Cervantes");
+                var project2 = dataContext.Projects.FirstOrDefault(x => x.Client == "Escuela Primaria La Reforma");
+                var project3 = dataContext.Projects.FirstOrDefault(x => x.Client == "Conjunto Habitacional Las Palmas");
+
+                if (tool1 != null && project1 != null)
+                {
+                    dataContext.ToolAssignments.Add(new ToolAssignment { ToolAssignmentID = 1, AssignmentDate = 20231010, Tool = tool1, Project = project1 });
+                }
+
+                if (tool2 != null && project2 != null)
+                {
+                    dataContext.ToolAssignments.Add(new ToolAssignment { ToolAssignmentID = 2, AssignmentDate = 20231011, Tool = tool2, Project = project2 });
+                }
+
+                if (tool3 != null && project3 != null)
+                {
+                    dataContext.ToolAssignments.Add(new ToolAssignment { ToolAssignmentID = 3, AssignmentDate = 20231012, Tool = tool3, Project = project3 });
+                }
+
+                await dataContext.SaveChangesAsync();
+            }
+        }
+
+        private async Task CheckToolsAsync()
+        {
+            if (!dataContext.Tools.Any())
+            {
+                var tool1 = dataContext.Tools.FirstOrDefault(x => x.ToolName == "Taladro Eléctrico");
+                var tool2 = dataContext.Tools.FirstOrDefault(x => x.ToolName == "Sierra Circular");
+                var tool3 = dataContext.Tools.FirstOrDefault(x => x.ToolName == "Martillo");
+                var tool4 = dataContext.Tools.FirstOrDefault(x => x.ToolName == "Destornillador");
+                var tool5 = dataContext.Tools.FirstOrDefault(x => x.ToolName == "Llave Inglesa");
+                await dataContext.SaveChangesAsync();
+            }
+        }
+
+        private async Task CheckMachineryAssignmentsAsync()
+        {
+            if (!dataContext.MachineryAssignments.Any())
+            {
+                var machinery1 = dataContext.Machineries.FirstOrDefault(x => x.Machine == "Torno Mecánico");
+                var machinery2 = dataContext.Machineries.FirstOrDefault(x => x.Machine == "Fresadora CNC");
+                var machinery3 = dataContext.Machineries.FirstOrDefault(x => x.Machine == "Prensa Hidráulica");
+
+                if (machinery1 != null)
+                {
+                    dataContext.MachineryAssignments.Add(new MachineryAssignment
+                    {
+                        MachineProject = "Hospital Manuel Cervantes",
+                        AssignationDate = "15/01/2024",
+                        Machinery = machinery1
+                    });
+                }
+
+                if (machinery2 != null)
+                {
+                    dataContext.MachineryAssignments.Add(new MachineryAssignment
+                    {
+                        MachineProject = "Escuela Primaria La Reforma",
+                        AssignationDate = "20/01/2024",
+                        Machinery = machinery2
+                    });
+                }
+
+                if (machinery3 != null)
+                {
+                    dataContext.MachineryAssignments.Add(new MachineryAssignment
+                    {
+                        MachineProject = "Conjunto Habitacional Las Palmas",
+                        AssignationDate = "25/01/2024",
+                        Machinery = machinery3
+                    });
+                }
+
+                await dataContext.SaveChangesAsync();
+            }
+        }
+
+        private async Task CheckMachineriesAsync()
+        {
+            if (!dataContext.Machineries.Any())
+            {
+                dataContext.Machineries.Add(new Machinery
+                {
+                    Code = "TM001",
+                    Machine_Model = "Torno Mecánico TMX-120",
+                    Machine = "Torno Mecánico",
+                    Capacity = "1500 RPM"
+                });
+                dataContext.Machineries.Add(new Machinery
+                {
+                    Code = "FC002",
+                    Machine_Model = "Fresadora CNC FCN-200",
+                    Machine = "Fresadora CNC",
+                    Capacity = "5000 RPM"
+                });
+                dataContext.Machineries.Add(new Machinery
+                {
+                    Code = "PH003",
+                    Machine_Model = "Prensa Hidráulica PH-550",
+                    Machine = "Prensa Hidráulica",
+                    Capacity = "550 Toneladas"
+                });
+
+                await dataContext.SaveChangesAsync();
+            }
+        }
+
+        // revisar pq aurelio se confundio
+        private async Task CheckMaintenanceDetailsAsync()
+        {
+            if (!dataContext.MaintenanceDetails.Any())
+            {
+                var maintenance1 = dataContext.Maintenances.FirstOrDefault(x => x.MaintenanceType == "Preventivo");
+                var maintenance2 = dataContext.Maintenances.FirstOrDefault(x => x.MaintenanceType == "Correctivo");
+                var maintenance3 = dataContext.Maintenances.FirstOrDefault(x => x.MaintenanceType == "Predictivo");
+
+                var machinery1 = dataContext.Machineries.FirstOrDefault(x => x.Machine == "Torno Mecánico");
+                var machinery2 = dataContext.Machineries.FirstOrDefault(x => x.Machine == "Fresadora CNC");
+                var machinery3 = dataContext.Machineries.FirstOrDefault(x => x.Machine == "Prensa Hidráulica");
+
+                if (maintenance1 != null && machinery1 != null)
+                {
+                    dataContext.MaintenanceDetails.Add(new MaintenanceDetails { Machine = "Torno Mecánico", MaintenanceDate = "01/03/2024", MaintenanceType = "Preventivo", Description = "Cambio de aceite y limpieza general", Cost = 2500, Maintenance = maintenance1, Machinery = machinery1 });
+                }
+
+                if (maintenance2 != null && machinery2 != null)
+                {
+                    dataContext.MaintenanceDetails.Add(new MaintenanceDetails { Machine = "Fresadora CNC", MaintenanceDate = "15/04/2024", MaintenanceType = "Correctivo", Description = "Reparación de sistema hidráulico", Cost = 4500, Maintenance = maintenance2, Machinery = machinery2 });
+                }
+
+                if (maintenance3 != null && machinery3 != null)
+                {
+                    dataContext.MaintenanceDetails.Add(new MaintenanceDetails { Machine = "Prensa Hidráulica", MaintenanceDate = "10/05/2024", MaintenanceType = "Predictivo", Description = "Revisión de componentes críticos", Cost = 3500, Maintenance = maintenance3, Machinery = machinery3 });
+                }
+
+                await dataContext.SaveChangesAsync();
+            }
+        }
+
+        private async Task CheckMaintenancesAsync()
+        {
+            if (!dataContext.Maintenances.Any())
+            {
+                dataContext.Maintenances.Add(new Maintenance { MaintenanceID = 1001, EquipmentID = 1, MaintenanceDate = 20231010, MaintenanceType = "Preventivo", Description = "Revisión general y limpieza del motor", Cost = 1200.50f });
+                dataContext.Maintenances.Add(new Maintenance { MaintenanceID = 1002, EquipmentID = 2, MaintenanceDate = 20231011, MaintenanceType = "Correctivo", Description = "Reemplazo de piezas desgastadas", Cost = 850.75f });
+                dataContext.Maintenances.Add(new Maintenance { MaintenanceID = 1003, EquipmentID = 3, MaintenanceDate = 20231012, MaintenanceType = "Predictivo", Description = "Inspección con herramientas de diagnóstico", Cost = 650.00f });
+                dataContext.Maintenances.Add(new Maintenance { MaintenanceID = 1004, EquipmentID = 4, MaintenanceDate = 20231013, MaintenanceType = "Correctivo", Description = "Ajuste de piezas móviles y lubricación", Cost = 900.00f });
+
+                await dataContext.SaveChangesAsync();
+            }
         }
 
         private async Task CheckProjectsAsync()
