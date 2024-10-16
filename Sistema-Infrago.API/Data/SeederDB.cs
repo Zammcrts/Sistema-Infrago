@@ -134,11 +134,12 @@ namespace Sistema_Infrago.API.Data
         {
             if (!dataContext.Tools.Any())
             {
-                var tool1 = dataContext.Tools.FirstOrDefault(x => x.ToolName == "Taladro Eléctrico");
-                var tool2 = dataContext.Tools.FirstOrDefault(x => x.ToolName == "Sierra Circular");
-                var tool3 = dataContext.Tools.FirstOrDefault(x => x.ToolName == "Martillo");
-                var tool4 = dataContext.Tools.FirstOrDefault(x => x.ToolName == "Destornillador");
-                var tool5 = dataContext.Tools.FirstOrDefault(x => x.ToolName == "Llave Inglesa");
+                dataContext.Tools.Add(new Tool { ToolID = 1, ToolName = "Taladro Eléctrico", QuantityAvailable = 10 });
+                dataContext.Tools.Add(new Tool { ToolID = 2, ToolName = "Sierra Circular", QuantityAvailable = 5 });
+                dataContext.Tools.Add(new Tool { ToolID = 3, ToolName = "Martillo", QuantityAvailable = 20 });
+                dataContext.Tools.Add(new Tool { ToolID = 4, ToolName = "Llave Ajustable", QuantityAvailable = 15 });
+                dataContext.Tools.Add(new Tool { ToolID = 5, ToolName = "Destornillador Eléctrico", QuantityAvailable = 8 });
+
                 await dataContext.SaveChangesAsync();
             }
         }
@@ -230,17 +231,17 @@ namespace Sistema_Infrago.API.Data
 
                 if (maintenance1 != null && machinery1 != null)
                 {
-                    dataContext.MaintenanceDetails.Add(new MaintenanceDetails { Machine = "Torno Mecánico", MaintenanceDate = "01/03/2024", MaintenanceType = "Preventivo", Description = "Cambio de aceite y limpieza general", Cost = 2500, Maintenance = maintenance1, Machinery = machinery1 });
+                    dataContext.MaintenanceDetails.Add(new MaintenanceDetails {MaintenanceDate = "01/03/2024", MaintenanceType = "Preventivo", Description = "Cambio de aceite y limpieza general", Cost = 2500, Maintenance = maintenance1, Machinery = machinery1 });
                 }
 
                 if (maintenance2 != null && machinery2 != null)
                 {
-                    dataContext.MaintenanceDetails.Add(new MaintenanceDetails { Machine = "Fresadora CNC", MaintenanceDate = "15/04/2024", MaintenanceType = "Correctivo", Description = "Reparación de sistema hidráulico", Cost = 4500, Maintenance = maintenance2, Machinery = machinery2 });
+                    dataContext.MaintenanceDetails.Add(new MaintenanceDetails {MaintenanceDate = "15/04/2024", MaintenanceType = "Correctivo", Description = "Reparación de sistema hidráulico", Cost = 4500, Maintenance = maintenance2, Machinery = machinery2 });
                 }
 
                 if (maintenance3 != null && machinery3 != null)
                 {
-                    dataContext.MaintenanceDetails.Add(new MaintenanceDetails { Machine = "Prensa Hidráulica", MaintenanceDate = "10/05/2024", MaintenanceType = "Predictivo", Description = "Revisión de componentes críticos", Cost = 3500, Maintenance = maintenance3, Machinery = machinery3 });
+                    dataContext.MaintenanceDetails.Add(new MaintenanceDetails {MaintenanceDate = "10/05/2024", MaintenanceType = "Predictivo", Description = "Revisión de componentes críticos", Cost = 3500, Maintenance = maintenance3, Machinery = machinery3 });
                 }
 
                 await dataContext.SaveChangesAsync();

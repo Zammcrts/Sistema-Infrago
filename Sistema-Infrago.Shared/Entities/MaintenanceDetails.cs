@@ -10,11 +10,6 @@ namespace Sistema_Infrago.Shared.Entities
     public class MaintenanceDetails
     {
         public int Id { get; set; }
-
-        [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        [Display(Name = "Máquina")]
-        [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
-        public string Machine { get; set; } = null!;
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Fecha de mantenimiento")]
         [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
