@@ -231,17 +231,17 @@ namespace Sistema_Infrago.API.Data
 
                 if (maintenance1 != null && machinery1 != null)
                 {
-                    dataContext.MaintenanceDetails.Add(new MaintenanceDetails {MaintenanceDate = "01/03/2024", MaintenanceType = "Preventivo", Description = "Cambio de aceite y limpieza general", Cost = 2500, Maintenance = maintenance1, Machinery = machinery1 });
+                    dataContext.MaintenanceDetails.Add(new MaintenanceDetails {MaintenanceDate = "01/03/2024", Description = "Cambio de aceite y limpieza general", Cost = 2500, Maintenance = maintenance1, Machinery = machinery1 });
                 }
 
                 if (maintenance2 != null && machinery2 != null)
                 {
-                    dataContext.MaintenanceDetails.Add(new MaintenanceDetails {MaintenanceDate = "15/04/2024", MaintenanceType = "Correctivo", Description = "Reparación de sistema hidráulico", Cost = 4500, Maintenance = maintenance2, Machinery = machinery2 });
+                    dataContext.MaintenanceDetails.Add(new MaintenanceDetails {MaintenanceDate = "15/04/2024", Description = "Reparación de sistema hidráulico", Cost = 4500, Maintenance = maintenance2, Machinery = machinery2 });
                 }
 
                 if (maintenance3 != null && machinery3 != null)
                 {
-                    dataContext.MaintenanceDetails.Add(new MaintenanceDetails {MaintenanceDate = "10/05/2024", MaintenanceType = "Predictivo", Description = "Revisión de componentes críticos", Cost = 3500, Maintenance = maintenance3, Machinery = machinery3 });
+                    dataContext.MaintenanceDetails.Add(new MaintenanceDetails {MaintenanceDate = "10/05/2024", Description = "Revisión de componentes críticos", Cost = 3500, Maintenance = maintenance3, Machinery = machinery3 });
                 }
 
                 await dataContext.SaveChangesAsync();

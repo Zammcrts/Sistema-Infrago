@@ -31,7 +31,7 @@ namespace Sistema_Infrago.API.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<MachineryAssignment>().HasIndex(x => x.MachineProject).IsUnique();
-            modelBuilder.Entity<Assignment>().HasIndex(x => x.Quantity).IsUnique();
+            //modelBuilder.Entity<Assignment>().HasIndex(x => x.Quantity).IsUnique();
             modelBuilder.Entity<Client>().HasIndex(x => x.Project).IsUnique();
             modelBuilder.Entity<Machinery>().HasIndex(x => x.Code).IsUnique();
             modelBuilder.Entity<Maintenance>().HasIndex(x => x.MaintenanceID).IsUnique();

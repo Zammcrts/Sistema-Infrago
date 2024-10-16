@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sistema_Infrago.API.Data;
 
@@ -11,9 +12,11 @@ using Sistema_Infrago.API.Data;
 namespace Sistema_Infrago.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20241016014450_pruebatonta")]
+    partial class pruebatonta
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,6 +52,9 @@ namespace Sistema_Infrago.API.Migrations
                     b.HasIndex("MaterialId");
 
                     b.HasIndex("ProjectId");
+
+                    b.HasIndex("Quantity")
+                        .IsUnique();
 
                     b.ToTable("Assignments");
                 });
@@ -273,6 +279,11 @@ namespace Sistema_Infrago.API.Migrations
 
                     b.Property<int?>("MaintenanceId")
                         .HasColumnType("int");
+
+                    b.Property<string>("MaintenanceType")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 

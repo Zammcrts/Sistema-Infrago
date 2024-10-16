@@ -14,10 +14,7 @@ namespace Sistema_Infrago.Shared.Entities
         [Display(Name = "Fecha de mantenimiento")]
         [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
         public string MaintenanceDate { get; set; } = null!;
-        [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        [Display(Name = "Tipo de mantenimiento")]
-        [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
-        public string MaintenanceType { get; set; } = null!;
+
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Display(Name = "Descripción")]
         [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
